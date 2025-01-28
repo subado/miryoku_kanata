@@ -42,9 +42,9 @@
   #define U_UND undo
 #endif
 
-#define U_MT(TAP, HOLD) (tap-hold-next-release U_TAPPING_TERM TAP HOLD)
-#define U_LT(TAP, HOLD) (tap-hold-next-release U_TAPPING_TERM TAP (layer-toggle HOLD))
-#define U_DF(LAYER) (multi-tap U_TAPPING_TERM XX (layer-switch LAYER))
+#define U_MT(TAP, HOLD) (tap-hold-release U_TAPPING_TERM U_TAPPING_TERM TAP HOLD)
+#define U_LT(TAP, HOLD) (tap-hold-release U_TAPPING_TERM U_TAPPING_TERM TAP (layer-toggle HOLD))
+#define U_DF(LAYER) (tap-dance U_TAPPING_TERM (XX (layer-switch LAYER)))
 
 #define MIRYOKU_MAPPING_MAIN( \
   K00,      K01,      K02,      K03,      K04,      K05,      K06,      K07,      K08,      K09, \
@@ -64,10 +64,10 @@
   #define MIRYOKU_MAPPING MIRYOKU_MAPPING_MAIN
 #endif
 
-#if !defined (MIRYOKU_KMONAD_KEYBOARD_LINUX)
-  #define MIRYOKU_KMONAD_KEYBOARD_LINUX "keyboard"
+#if !defined (MIRYOKU_KANATA_KEYBOARD_LINUX)
+  #define MIRYOKU_KANATA_KEYBOARD_LINUX "keyboard"
 #endif
 
-#if !defined (MIRYOKU_KMONAD_KEYBOARD_MAC)
-  #define MIRYOKU_KMONAD_KEYBOARD_MAC
+#if !defined (MIRYOKU_KANATA_KEYBOARD_MAC)
+  #define MIRYOKU_KANATA_KEYBOARD_MAC
 #endif

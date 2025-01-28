@@ -4,20 +4,10 @@
 #include "miryoku.h"
 
 (defcfg
-#if defined (MIRYOKU_KMONAD_OS_WIN)
-  input  (low-level-hook)
-  output (send-event-sink)
-#elif defined (MIRYOKU_KMONAD_OS_MAC)
-  input  (iokit-name MIRYOKU_KMONAD_KEYBOARD_MAC)
-  output (kext)
-#else
-  input  (device-file MIRYOKU_KMONAD_KEYBOARD_LINUX)
-  output (uinput-sink "Miryoku KMonad output")
-#endif
 #if defined (MIRYOKU_MAPPING_LITE)
-  fallthrough true
-#else
-  fallthrough false
+  process-unmapped-keys yes
+#else 
+  process-unmapped-keys no
 #endif
 )
 
@@ -53,6 +43,13 @@
   caps   a      s      d      f           k      l      ;      U_QUOT ent
                 x      c      v           ,      .      /
 #endif
+)
+
+#if defined (linux)
+#undef linux
+#endif
+(deflocalkeys-linux
+  MediaPlayStop 166
 )
 
 #define MIRYOKU_X(LAYER, STRING) \
